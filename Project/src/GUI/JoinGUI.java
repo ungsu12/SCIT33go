@@ -53,13 +53,15 @@ public class JoinGUI extends JFrame  {
 	public ButtonGroup gender = null;
 	private ClientManager cm = new ClientManager();
 	ImageIcon image = new ImageIcon("Img\\kodomo12.jpg");
+	private int select;
 	/**
 	 * Launch the application.
 	 */
 	private JFrame everyGUI;
 	
 	//회원가입 창
-	public JoinGUI() {
+	public JoinGUI(int x) {
+		select = x;
 		setIconImage(Toolkit.getDefaultToolkit().getImage("Img\\mark.PNG"));
 		
 		//X를 누르면 로그인화면으로 돌아감
@@ -267,7 +269,8 @@ public class JoinGUI extends JFrame  {
 	//확인버튼을 눌러 DB에 회원정보를 저장함.
 	public JButton getBtnNewButton() {
 		if (btnNewButton == null) {
-			btnNewButton = new JButton("확인");
+			btnNewButton = new JButton("");
+			btnNewButton.setIcon(new ImageIcon("C:\\Users\\user\\git\\SCIT33go\\Project\\Img\\chackButton1.png"));
 			btnNewButton.setFont(new Font("HY수평선M", Font.BOLD, 16));
 			btnNewButton.setBounds(72, 367, 75, 39);
 			btnNewButton.addActionListener(new ActionListener() {
@@ -275,7 +278,7 @@ public class JoinGUI extends JFrame  {
 					//회원정보 수정창과 동일한 GUI를 사용하기에 확인일 경우와 수정일경우를 나누어줌
 					//가입으로 들어와서 DB에 회원정보를 저장함
 					if (e.getSource() == btnNewButton) {
-						if(btnNewButton.getText().equals("확인")){
+						if(select == 1){
 							if (getIdtf().getText().equals("") || getPf().getText().equals("")
 									|| getNametf().getText().equals("") || getAgetf().getText().equals("")||
 									!radioman.isSelected() && !radioWoman.isSelected()){
@@ -321,7 +324,7 @@ public class JoinGUI extends JFrame  {
 							}
 						}
 						//회원정보 수정으로 들어와서 정보를 수정함.
-						if(btnNewButton.getText().equals("수정")){
+						if(select == 2){
 							if(getPf().getText().equals("")
 									|| getNametf().getText().equals("") || getAgetf().getText().equals("")){
 								JOptionPane.showMessageDialog(null, "빈칸을 모두 입력하십시오.", "수정결과", JOptionPane.ERROR_MESSAGE);
@@ -364,7 +367,8 @@ public class JoinGUI extends JFrame  {
 	//취소를 눌러 clientGUI나 mainGUI로 복귀함.
 	private JButton getBtnNewButton_1() {
 		if (btnNewButton_1 == null) {
-			btnNewButton_1 = new JButton("취소");
+			btnNewButton_1 = new JButton("");
+			btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\user\\git\\SCIT33go\\Project\\Img\\cancleButton1.png"));
 			btnNewButton_1.setFont(new Font("HY수평선M", Font.BOLD, 16));
 			btnNewButton_1.setBounds(168, 367, 75, 39);
 			btnNewButton_1.addActionListener(new ActionListener() {

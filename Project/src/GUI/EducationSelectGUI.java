@@ -32,7 +32,7 @@ public class EducationSelectGUI extends JFrame {
 	private JButton button;
 	private JButton button_1;
 	private JFrame evevryGUI;
-	private JLabel lblNewLabel;
+	public JLabel lblNewLabel;
 	ImageIcon image = new ImageIcon("Img\\kodomo20.jpg");
 	public JLabel lblNewLabel_1;
 	public JLabel label;
@@ -150,7 +150,7 @@ public class EducationSelectGUI extends JFrame {
 	}
 
 	//초급버튼. 게임, 평가, 학습에 따라 들어가는 화면이 달라짐
-	private JButton getButton_2() {
+	public JButton getButton_2() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("");
 			btnNewButton.setIcon(new ImageIcon("Img\\educationButton1.png"));
@@ -191,7 +191,7 @@ public class EducationSelectGUI extends JFrame {
 	}
 
 	//중급버튼. 게임, 평가, 학습에 따라 들어가는 화면이 달라짐
-	private JButton getButton_3() {
+	public JButton getButton_3() {
 		if (button == null) {
 			button = new JButton("");
 			button.setIcon(new ImageIcon("Img\\educationButton2.png"));
@@ -232,7 +232,7 @@ public class EducationSelectGUI extends JFrame {
 	}
 
 	//고급버튼. 게임, 평가, 학습에 따라 들어가는 화면이 달라짐
-	private JButton getButton_1_1() {
+	public JButton getButton_1_1() {
 		if (button_1 == null) {
 			button_1 = new JButton("");
 			button_1.setIcon(new ImageIcon("Img\\educationButton3.png"));

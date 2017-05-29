@@ -129,7 +129,7 @@ public class ClientGUI extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == button){
-		               JoinGUI jg = new JoinGUI();
+		               JoinGUI jg = new JoinGUI(1);
 		               jg.setVisible(true);
 		               setVisible(false);
 		            }

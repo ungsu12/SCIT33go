@@ -43,6 +43,13 @@ public class MainGUI extends JFrame {
     private JButton button_3;
     private JLabel lblNewLabel;
     ImageIcon image = new ImageIcon("Img\\kodomo15.jpg");
+    ImageIcon image1 = new ImageIcon("Img\\kodomo25.jpg");
+    ImageIcon image2 = new ImageIcon("Img\\kodomo26.jpg");
+    ImageIcon image3 = new ImageIcon("Img\\kodomo27.jpg");
+    ImageIcon image4 = new ImageIcon("Img\\gameButton1.png");
+    ImageIcon image5 = new ImageIcon("Img\\gameButton2.png");
+    ImageIcon image6 = new ImageIcon("Img\\gameButton3.png");
+    ImageIcon image7 = new ImageIcon("Img\\updateButton1.png");
     private JLabel lblNewLabel_1;
     private JLabel label;
     private JLabel label_1;
@@ -122,6 +129,7 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					if(e.getSource() == btnNewButton_3){
 						EducationSelectGUI eg = new EducationSelectGUI(MainGUI.this);
+						eg.lblNewLabel.setIcon(image1);
 						eg.setVisible(true);
 						setVisible(false);
 					}
@@ -142,12 +150,16 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					if(e.getSource() == button){
 						EducationSelectGUI eg = new EducationSelectGUI(MainGUI.this);
-						eg.lblNewLabel_1.setFont(new Font("한컴 백제 M", Font.BOLD, 22));
-						eg.label.setFont(new Font("한컴 백제 M", Font.BOLD, 22));
-						eg.label_1.setFont(new Font("한컴 백제 M", Font.BOLD, 22));
-						eg.lblNewLabel_1.setText("<html>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;히라가나가 떨어지면<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;맞추는 게임입니다<br></html>");
-						eg.label.setText("<html>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가타카나가 떨어지면<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;맞추는 게임입니다<br></html>");
-						eg.label_1.setText("<html>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;단어가 떨어지면<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;맞추는 게임입니다<br></html>");
+						eg.lblNewLabel_1.setFont(new Font("굴림", Font.BOLD, 22));
+						eg.label.setFont(new Font("굴림", Font.BOLD, 22));
+						eg.label_1.setFont(new Font("굴림", Font.BOLD, 22));
+						eg.lblNewLabel_1.setText("<html>&nbsp;&nbsp;&nbsp;히라가나가 떨어지면<br>&nbsp;&nbsp;&nbsp;맞추는 게임입니다<br></html>");
+						eg.label.setText("<html>&nbsp;&nbsp;&nbsp;가타카나가 떨어지면<br>&nbsp;&nbsp;&nbsp;맞추는 게임입니다<br></html>");
+						eg.label_1.setText("<html>&nbsp;&nbsp;&nbsp;단어가 떨어지면<br>&nbsp;&nbsp;&nbsp;맞추는 게임입니다<br></html>");
+						eg.lblNewLabel.setIcon(image2);
+						eg.getButton_2().setIcon(image4);
+						eg.getButton_3().setIcon(image5);
+						eg.getButton_1_1().setIcon(image6);
 						eg.setVisible(true);
 						eg.setTitle("게임 선택");
 						setVisible(false);
@@ -170,9 +182,13 @@ public class MainGUI extends JFrame {
 					//평가버튼을 눌러서 
 					if(e.getSource() == button_1){
 						EducationSelectGUI eg = new EducationSelectGUI(MainGUI.this);
-						eg.lblNewLabel_1.setText("<html>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;한국어 발음이 보이면<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;히라가나로 적는 평가입니다<br></html>");
-						eg.label.setText("<html>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;한국어 발음이 보이면<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가타카나로 적는 평가입니다<br></html>");
-						eg.label_1.setText("<html>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;단어의 의미가 보이면<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;단어를 적는 평가입니다<br></html>");
+						eg.lblNewLabel_1.setText("<html>&nbsp;&nbsp;&nbsp;한국어 발음이 보이면<br>&nbsp;&nbsp;&nbsp;히라가나로 적는 평가입니다<br></html>");
+						eg.label.setText("<html>&nbsp;&nbsp;&nbsp;한국어 발음이 보이면<br>&nbsp;&nbsp;&nbsp;가타카나로 적는 평가입니다<br></html>");
+						eg.label_1.setText("<html>&nbsp;&nbsp;&nbsp;단어의 의미가 보이면<br>&nbsp;&nbsp;&nbsp;단어를 적는 평가입니다<br></html>");
+						eg.lblNewLabel_1.setFont(new Font("굴림", Font.BOLD, 22));
+						eg.label.setFont(new Font("굴림", Font.BOLD, 22));
+						eg.label_1.setFont(new Font("굴림", Font.BOLD, 22));
+						eg.lblNewLabel.setIcon(image3);
 						eg.setVisible(true);
 						eg.setTitle("평가 선택");
 						setVisible(false);
@@ -211,12 +227,12 @@ public class MainGUI extends JFrame {
 			btnNewButton_4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				   if(e.getSource() == btnNewButton_4){
-					   JoinGUI jg = new JoinGUI();
+					   JoinGUI jg = new JoinGUI(2);
 					   jg.getIdtf().setEnabled(false);
 					   jg.setTitle("회원 정보 수정");
-					   jg.getBtnNewButton().setText("수정");
 					   jg.getRadioMan().setEnabled(false);
 					   jg.getRadioWoman().setEnabled(false);
+					   jg.getBtnNewButton().setIcon(image7);
 					   jg.setVisible(true);
 					   setVisible(false);
 					  

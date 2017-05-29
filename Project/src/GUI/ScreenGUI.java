@@ -149,8 +149,20 @@ public class ScreenGUI extends JFrame implements Serializable{
 	//과목 난이도 라벨
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("과목_난이도");
-			lblNewLabel.setFont(new Font("굴림", Font.BOLD, 17));
+			lblNewLabel = new JLabel("");
+			lblNewLabel.setFont(new Font("굴림", Font.BOLD, 20));
+			switch (select) {
+			case 1:
+			lblNewLabel.setText("학습 난이도 : 초급");
+				break;
+			case 2:
+			lblNewLabel.setText("학습 난이도 : 중급");
+				break;
+			case 3:
+			lblNewLabel.setText("학습 난이도  : 고급");
+				break;
+			
+			}
 			lblNewLabel.setBounds(754, 17, 209, 39);
 		}
 		return lblNewLabel;
@@ -159,7 +171,8 @@ public class ScreenGUI extends JFrame implements Serializable{
 	// 종료를 누르면 로그인 창으로 복귀함.
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
-			btnNewButton = new JButton("종료");
+			btnNewButton = new JButton("");
+			btnNewButton.setIcon(new ImageIcon("C:\\Users\\user\\git\\SCIT33go\\Project\\Img\\endButton1.png"));
 			btnNewButton.setFont(new Font("HY수평선M", Font.BOLD, 19));
 			btnNewButton.setBounds(787, 503, 180, 56);
 			btnNewButton.addActionListener(new ActionListener() {
@@ -197,7 +210,8 @@ public class ScreenGUI extends JFrame implements Serializable{
 	//이전을 누르면 전 문제로 돌아감.
 	private JButton getBtnNewButton_1() {
 		if (btnNewButton_1 == null) {
-			btnNewButton_1 = new JButton("이전");
+			btnNewButton_1 = new JButton("");
+			btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\user\\git\\SCIT33go\\Project\\Img\\beforeButton1.png"));
 			btnNewButton_1.setFont(new Font("HY수평선M", Font.BOLD, 19));
 			btnNewButton_1.setBounds(36, 503, 132, 56);
 			btnNewButton_1.addActionListener(new ActionListener() {
@@ -267,7 +281,8 @@ public class ScreenGUI extends JFrame implements Serializable{
 	//다음을 누르면 다음 문제로 돌아감.
 	private JButton getButton() {
 		if (button == null) {
-			button = new JButton("다음");
+			button = new JButton("");
+			button.setIcon(new ImageIcon("C:\\Users\\user\\git\\SCIT33go\\Project\\Img\\nextButton1.png"));
 			button.setFont(new Font("HY수평선M", Font.BOLD, 19));
 			button.setBounds(182, 503, 132, 56);
 			button.addActionListener(new ActionListener() {
@@ -374,7 +389,8 @@ public class ScreenGUI extends JFrame implements Serializable{
 	//다시듣기 버튼을 누르면 음악이 다시 재생됨
 	private JButton getButton_1() {
 		if (button_1 == null) {
-			button_1 = new JButton("다시 듣기");
+			button_1 = new JButton("");
+			button_1.setIcon(new ImageIcon("C:\\Users\\user\\git\\SCIT33go\\Project\\Img\\repeatButton1.png"));
 			button_1.setFont(new Font("HY수평선M", Font.BOLD, 19));
 			button_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {

@@ -127,7 +127,7 @@ public class RecordGUI extends JFrame {
 		//배경이미지
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(0, 0, 830, 712);
-		lblNewLabel.setIcon(image1);
+		lblNewLabel.setIcon(new ImageIcon("Img\\kodomo28.jpg"));
 		contentPane.add(lblNewLabel);
 		setVisible(true);
 	}
@@ -135,9 +135,10 @@ public class RecordGUI extends JFrame {
 	//나가기를 눌렀을 경우 메인GUI로 복귀함.
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
-			btnNewButton = new JButton("나가기");
+			btnNewButton = new JButton("");
+			btnNewButton.setIcon(new ImageIcon("Img\\pygEndButton1.png"));
 			btnNewButton.setFont(new Font("HY수평선M", Font.BOLD, 19));
-			btnNewButton.setBounds(614, 628, 190, 58);
+			btnNewButton.setBounds(667, 628, 120, 58);
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				  if(e.getSource() == btnNewButton){
@@ -154,7 +155,8 @@ public class RecordGUI extends JFrame {
 	//평가기록 버튼 눌렀을 때
 	private JButton getBtnNewButton_1() {
 		if (btnNewButton_1 == null) {
-			btnNewButton_1 = new JButton("평가 기록");
+			btnNewButton_1 = new JButton("");
+			btnNewButton_1.setIcon(new ImageIcon("Img\\pygRecordButton1.png"));
 			btnNewButton_1.setFont(new Font("HY수평선M", Font.BOLD, 19));
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -166,7 +168,7 @@ public class RecordGUI extends JFrame {
 					}
 				}
 			});
-			btnNewButton_1.setBounds(24, 629, 142, 57);
+			btnNewButton_1.setBounds(24, 628, 129, 58);
 		}
 		return btnNewButton_1;
 	}
@@ -174,7 +176,8 @@ public class RecordGUI extends JFrame {
 	//게임기록 버튼 눌렀을 때 게임기록을 보여줌
 	private JButton getButton() {
 		if (button == null) {
-			button = new JButton("게임 기록");
+			button = new JButton("");
+			button.setIcon(new ImageIcon("Img\\gameRecordButton1.png"));
 			button.setFont(new Font("HY수평선M", Font.BOLD, 19));
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -186,7 +189,7 @@ public class RecordGUI extends JFrame {
 					}
 				}
 			});
-			button.setBounds(180, 628, 142, 57);
+			button.setBounds(180, 628, 129, 57);
 		}
 		return button;
 	}

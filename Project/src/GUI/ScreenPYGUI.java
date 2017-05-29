@@ -143,7 +143,8 @@ public class ScreenPYGUI extends JFrame {
 		lblNewLabel.setBounds(598, 12, 139, 40);
 
 		// 문제패스버튼
-		JButton button_1 = new JButton("문제 패스(잘 모르겠어요)");
+		JButton button_1 = new JButton("");
+		button_1.setIcon(new ImageIcon("Img\\passButton1.png"));
 		button_1.setFont(new Font("HY수평선M", Font.BOLD, 18));
 		button_1.setBounds(14, 295, 272, 56);
 		button_1.addActionListener(new ActionListener() {
@@ -178,7 +179,8 @@ public class ScreenPYGUI extends JFrame {
 		});
 
 		// 종료를 눌렀을 경우에는 메인으로 복귀함.
-		JButton button_2 = new JButton("종료");
+		JButton button_2 = new JButton("");
+		button_2.setIcon(new ImageIcon("Img\\pygEndButton1.png"));
 		button_2.setFont(new Font("HY수평선M", Font.BOLD, 18));
 		button_2.setBounds(621, 295, 116, 56);
 		button_2.addActionListener(new ActionListener() {
