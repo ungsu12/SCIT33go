@@ -101,11 +101,11 @@ public class GameGUI extends JFrame implements ActionListener, Runnable{
 			//라이프 위치
 			Image img = Toolkit.getDefaultToolkit().getImage("Img\\gameImg1.png");
 			g.drawImage(img, 0, 0, this);
-			String i = "LIFE = ";
+			String i = "LIFE : ";
 			Font font1 = new Font(i, Font.BOLD, 20);
 			g.setFont(font1);
 			g.drawString(i + life, 10, 30);
-			String s = "Score = ";
+			String s = "Score : ";
 			Font font2 = new Font(s, Font.BOLD, 20);
 			g.setFont(font2);
 			g.drawString(s + score, 330, 30);
