@@ -172,7 +172,7 @@ public class ScreenGUI extends JFrame implements Serializable{
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("");
-			btnNewButton.setIcon(new ImageIcon("C:\\Users\\user\\git\\SCIT33go\\Project\\Img\\endButton1.png"));
+			btnNewButton.setIcon(new ImageIcon("Img\\endButton1.png"));
 			btnNewButton.setFont(new Font("HY수평선M", Font.BOLD, 19));
 			btnNewButton.setBounds(787, 503, 180, 56);
 			btnNewButton.addActionListener(new ActionListener() {
@@ -211,7 +211,7 @@ public class ScreenGUI extends JFrame implements Serializable{
 	private JButton getBtnNewButton_1() {
 		if (btnNewButton_1 == null) {
 			btnNewButton_1 = new JButton("");
-			btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\user\\git\\SCIT33go\\Project\\Img\\beforeButton1.png"));
+			btnNewButton_1.setIcon(new ImageIcon("Img\\beforeButton1.png"));
 			btnNewButton_1.setFont(new Font("HY수평선M", Font.BOLD, 19));
 			btnNewButton_1.setBounds(36, 503, 132, 56);
 			btnNewButton_1.addActionListener(new ActionListener() {
@@ -282,7 +282,7 @@ public class ScreenGUI extends JFrame implements Serializable{
 	private JButton getButton() {
 		if (button == null) {
 			button = new JButton("");
-			button.setIcon(new ImageIcon("C:\\Users\\user\\git\\SCIT33go\\Project\\Img\\nextButton1.png"));
+			button.setIcon(new ImageIcon("Img\\nextButton1.png"));
 			button.setFont(new Font("HY수평선M", Font.BOLD, 19));
 			button.setBounds(182, 503, 132, 56);
 			button.addActionListener(new ActionListener() {
@@ -390,7 +390,7 @@ public class ScreenGUI extends JFrame implements Serializable{
 	private JButton getButton_1() {
 		if (button_1 == null) {
 			button_1 = new JButton("");
-			button_1.setIcon(new ImageIcon("C:\\Users\\user\\git\\SCIT33go\\Project\\Img\\repeatButton1.png"));
+			button_1.setIcon(new ImageIcon("Img\\repeatButton1.png"));
 			button_1.setFont(new Font("HY수평선M", Font.BOLD, 19));
 			button_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {

@@ -60,14 +60,15 @@ public class MainGUI extends JFrame {
 
     //메인화면 창
 	public MainGUI() {
-		setResizable(false);
 		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent e) {
 				ClientGUI cg = new ClientGUI();
 				cg.setVisible(true);
 				setVisible(false);
 			}
 		});
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("Img\\mark.PNG"));
 		setTitle("쎄쎄세(せっせっせ）");
 		setBounds(100, 100, 674, 540);

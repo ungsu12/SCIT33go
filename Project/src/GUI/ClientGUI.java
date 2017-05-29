@@ -35,6 +35,10 @@ import javax.swing.UIManager;
 
 import Client.ClientManager;
 import VO.Human;
+import sun.audio.AudioData;
+import sun.audio.AudioDataStream;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
@@ -42,6 +46,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 //로그인 창
@@ -51,7 +57,14 @@ public class ClientGUI extends JFrame {
 	private JPasswordField passwordField;
 	private ClientManager cm = new ClientManager();
 	private JLabel lblNewLabel_2;
+	private AudioStream as = null;
 	public ClientGUI() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage("Img\\mark.PNG"));
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setEnabled(false);
@@ -131,13 +144,9 @@ public class ClientGUI extends JFrame {
 				if(e.getSource() == button){
 		               JoinGUI jg = new JoinGUI(1);
 		               jg.setVisible(true);
+		       		AudioPlayer.player.stop(as);
 		               setVisible(false);
 		            }
-			}
-		});
-		button.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
 			}
 		});
 		getContentPane().add(button);
@@ -149,11 +158,10 @@ public class ClientGUI extends JFrame {
 		getContentPane().add(label_1);
 		setTitle("로그인");
 		setBounds(750, 300, 560, 428);
+		mainSound();
 		setVisible(true);
 	}
-	public static void main(String[] args){
-		new ClientGUI();
-	}
+	
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
 			putValue(NAME, "SwingAction");
@@ -178,9 +186,21 @@ public class ClientGUI extends JFrame {
 		if(cm.login(h) != 0){
 		new MainGUI();
 		setVisible(false);
+		AudioPlayer.player.stop(as);
 		}
 		else{
 		  JOptionPane.showMessageDialog(null, "아이디와 비밀번호를 확인하십시오.", "로그인 실패", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	private void mainSound(){
+		byte[] sound =cm.sound(62);
+		AudioData ad = new AudioData(sound);
+		AudioDataStream ads = new AudioDataStream(ad);
+		try {
+			as = new AudioStream(ads);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		AudioPlayer.player.start(as);
 	}
 }

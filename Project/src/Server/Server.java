@@ -120,7 +120,7 @@ public class Server {
 		//사운드 바이너리코드로 만듬
 		ArrayList<byte[]> soundbufIndex = new ArrayList<>();
 		byte[] soundbuf = null;
-		for (int j = 1; j < 62; j++) {
+		for (int j = 1; j < 63; j++) {
 			File file = new File("../Project/Sound/sound" + j + ".wav");
 			FileInputStream in;
 			try {
@@ -219,7 +219,7 @@ public class Server {
 			for (int i = 0; i < 107; i++) {
 				pstmt = conn.prepareStatement(query20);
 				pstmt.setBytes(1, imgbufIndex.get(i));
-				if(i < 61){
+				if(i < 62){
 				pstmt.setBytes(2, soundbufIndex.get(i));
 				}
 				else{

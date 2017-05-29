@@ -100,7 +100,6 @@ public class JoinGUI extends JFrame  {
 			
 			@Override
 			public void windowClosed(WindowEvent e) {
-				System.out.println("bbb");
 				
 			}
 			
@@ -270,7 +269,7 @@ public class JoinGUI extends JFrame  {
 	public JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("");
-			btnNewButton.setIcon(new ImageIcon("C:\\Users\\user\\git\\SCIT33go\\Project\\Img\\chackButton1.png"));
+			btnNewButton.setIcon(new ImageIcon("Img\\chackButton1.png"));
 			btnNewButton.setFont(new Font("HY수평선M", Font.BOLD, 16));
 			btnNewButton.setBounds(72, 367, 75, 39);
 			btnNewButton.addActionListener(new ActionListener() {
@@ -368,7 +367,7 @@ public class JoinGUI extends JFrame  {
 	private JButton getBtnNewButton_1() {
 		if (btnNewButton_1 == null) {
 			btnNewButton_1 = new JButton("");
-			btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\user\\git\\SCIT33go\\Project\\Img\\cancleButton1.png"));
+			btnNewButton_1.setIcon(new ImageIcon("Img\\cancleButton1.png"));
 			btnNewButton_1.setFont(new Font("HY수평선M", Font.BOLD, 16));
 			btnNewButton_1.setBounds(168, 367, 75, 39);
 			btnNewButton_1.addActionListener(new ActionListener() {
