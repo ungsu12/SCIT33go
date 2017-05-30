@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import Client.ClientManager;
 import VO.Dictionary;
 import VO.Grade;
+import VO.Human;
 import connection.ConnectionManager;
 
 import javax.swing.JLabel;
@@ -52,8 +53,10 @@ public class ScreenPYGUI extends JFrame {
 	private Font font = null;
 	private String level = null;
 	ImageIcon image = new ImageIcon("Img\\kodomo22.jpg");
+	private Human h;
 	//screenPYGUI 시작
-	public ScreenPYGUI(int x) {
+	public ScreenPYGUI(int x, Human h) {
+		this.h = h;
 		setIconImage(Toolkit.getDefaultToolkit().getImage("Img\\mark.PNG"));
 		setResizable(false);
 		
@@ -90,18 +93,18 @@ public class ScreenPYGUI extends JFrame {
 			public void windowClosing(WindowEvent e) {
 				JOptionPane.showMessageDialog(null, "시험이 끝났습니다. 당신의 점수는 " + score + "점 입니다", "종합 결과", JOptionPane.INFORMATION_MESSAGE);
 				if(x == 1){
-					Grade grade = new Grade(null, null, score, "초급");
+					Grade grade = new Grade(h.getId(), null, score, "초급");
 					cm.result(grade);
 				}
 				else if(x == 2){
-					Grade grade = new Grade(null, null, score, "중급");
+					Grade grade = new Grade(h.getId(), null, score, "중급");
 					cm.result(grade);
 				}
 				else if(x == 3){
-					Grade grade = new Grade(null, null, score, "고급");
+					Grade grade = new Grade(h.getId(), null, score, "고급");
 					cm.result(grade);
 				}
-				MainGUI mg = new MainGUI();
+				MainGUI mg = new MainGUI(h);
 				mg.setVisible(true);
 				setVisible(false);
 
@@ -160,19 +163,19 @@ public class ScreenPYGUI extends JFrame {
 				else{
 					JOptionPane.showMessageDialog(null, "시험이 끝났습니다. 당신의 점수는 " + score + "점 입니다", "종합 결과", JOptionPane.INFORMATION_MESSAGE);
 					if(x == 1){
-						Grade grade = new Grade(null, null, score, "초급");
+						Grade grade = new Grade(h.getId(), null, score, "초급");
 						cm.result(grade);
 					}
 					else if(x == 2){
-						Grade grade = new Grade(null, null, score, "중급");
+						Grade grade = new Grade(h.getId(), null, score, "중급");
 						cm.result(grade);
 					}
 					else if(x == 3){
-						Grade grade = new Grade(null, null, score, "고급");
+						Grade grade = new Grade(h.getId(), null, score, "고급");
 						cm.result(grade);
 					}
 					setVisible(false);
-					MainGUI mg = new MainGUI();
+					MainGUI mg = new MainGUI(h);
 					mg.setVisible(true);
 				}
 			}
@@ -188,19 +191,19 @@ public class ScreenPYGUI extends JFrame {
 				if (e.getSource() == button_2) {
 					JOptionPane.showMessageDialog(null, "시험이 끝났습니다. 당신의 점수는 " + score + "점 입니다", "종합 결과", JOptionPane.INFORMATION_MESSAGE);
 					if(x == 1){
-						Grade grade = new Grade(null, null, score, "초급");
+						Grade grade = new Grade(h.getId(), null, score, "초급");
 						cm.result(grade);
 					}
 					else if(x == 2){
-						Grade grade = new Grade(null, null, score, "중급");
+						Grade grade = new Grade(h.getId(), null, score, "중급");
 						cm.result(grade);
 					}
 					else if(x == 3){
-						Grade grade = new Grade(null, null, score, "고급");
+						Grade grade = new Grade(h.getId(), null, score, "고급");
 						cm.result(grade);
 					}
 					setVisible(false);
-					MainGUI mg = new MainGUI();
+					MainGUI mg = new MainGUI(h);
 					mg.setVisible(true);
 					setVisible(false);
 				}
@@ -232,19 +235,19 @@ public class ScreenPYGUI extends JFrame {
 				else{
 					JOptionPane.showMessageDialog(null, "시험이 끝났습니다. 당신의 점수는 " + score + "점 입니다", "종합 결과", JOptionPane.INFORMATION_MESSAGE);
 					if(x == 1){
-						Grade grade = new Grade(null, null, score, "초급");
+						Grade grade = new Grade(h.getId(), null, score, "초급");
 						cm.result(grade);
 					}
 					else if(x == 2){
-						Grade grade = new Grade(null, null, score, "중급");
+						Grade grade = new Grade(h.getId(), null, score, "중급");
 						cm.result(grade);
 					}
 					else if(x == 3){
-						Grade grade = new Grade(null, null, score, "고급");
+						Grade grade = new Grade(h.getId(), null, score, "고급");
 						cm.result(grade);
 					}
 					setVisible(false);
-					MainGUI mg = new MainGUI();
+					MainGUI mg = new MainGUI(h);
 					mg.setVisible(true);
 				}
 			}

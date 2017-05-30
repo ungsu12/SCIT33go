@@ -49,7 +49,6 @@ public class MainGUI extends JFrame {
     ImageIcon image4 = new ImageIcon("Img\\gameButton1.png");
     ImageIcon image5 = new ImageIcon("Img\\gameButton2.png");
     ImageIcon image6 = new ImageIcon("Img\\gameButton3.png");
-    ImageIcon image7 = new ImageIcon("Img\\updateButton1.png");
     private JLabel lblNewLabel_1;
     private JLabel label;
     private JLabel label_1;
@@ -57,9 +56,11 @@ public class MainGUI extends JFrame {
     private JLabel lblNewLabel_3;
     private JLabel label_3;
     private JLabel label_4;
+    private Human h;
 
     //메인화면 창
-	public MainGUI() {
+	public MainGUI(Human h) {
+		this.h = h;
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent e) {
@@ -129,7 +130,7 @@ public class MainGUI extends JFrame {
 			btnNewButton_3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(e.getSource() == btnNewButton_3){
-						EducationSelectGUI eg = new EducationSelectGUI(MainGUI.this);
+						EducationSelectGUI eg = new EducationSelectGUI(MainGUI.this, h);
 						eg.lblNewLabel.setIcon(image1);
 						eg.setVisible(true);
 						setVisible(false);
@@ -150,7 +151,7 @@ public class MainGUI extends JFrame {
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(e.getSource() == button){
-						EducationSelectGUI eg = new EducationSelectGUI(MainGUI.this);
+						EducationSelectGUI eg = new EducationSelectGUI(MainGUI.this, h);
 						eg.lblNewLabel_1.setFont(new Font("굴림", Font.BOLD, 22));
 						eg.label.setFont(new Font("굴림", Font.BOLD, 22));
 						eg.label_1.setFont(new Font("굴림", Font.BOLD, 22));
@@ -182,7 +183,7 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					//평가버튼을 눌러서 
 					if(e.getSource() == button_1){
-						EducationSelectGUI eg = new EducationSelectGUI(MainGUI.this);
+						EducationSelectGUI eg = new EducationSelectGUI(MainGUI.this, h);
 						eg.lblNewLabel_1.setText("<html>&nbsp;&nbsp;&nbsp;한국어 발음이 보이면<br>&nbsp;&nbsp;&nbsp;히라가나로 적는 평가입니다<br></html>");
 						eg.label.setText("<html>&nbsp;&nbsp;&nbsp;한국어 발음이 보이면<br>&nbsp;&nbsp;&nbsp;가타카나로 적는 평가입니다<br></html>");
 						eg.label_1.setText("<html>&nbsp;&nbsp;&nbsp;단어의 의미가 보이면<br>&nbsp;&nbsp;&nbsp;단어를 적는 평가입니다<br></html>");
@@ -209,7 +210,7 @@ public class MainGUI extends JFrame {
 			button_2.setBounds(19, 325, 153, 80);
 			button_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					RecordGUI rg = new RecordGUI();
+					RecordGUI rg = new RecordGUI(h);
 					rg.setVisible(true);
 					setVisible(false);
 				}
@@ -228,15 +229,13 @@ public class MainGUI extends JFrame {
 			btnNewButton_4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				   if(e.getSource() == btnNewButton_4){
-					   JoinGUI jg = new JoinGUI(2);
-					   jg.getIdtf().setEnabled(false);
+					   JoinGUI jg = new JoinGUI(2, h);
 					   jg.setTitle("회원 정보 수정");
 					   jg.getRadioMan().setEnabled(false);
 					   jg.getRadioWoman().setEnabled(false);
-					   jg.getBtnNewButton().setIcon(image7);
 					   jg.setVisible(true);
 					   setVisible(false);
-					  
+					   JOptionPane.showMessageDialog(null, "아이디와 패스워드를 입력하세요.", "확인", JOptionPane.INFORMATION_MESSAGE);
 				   }
 				}
 			});
@@ -255,7 +254,7 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					int result = JOptionPane.showConfirmDialog(null, "정말 삭제 하시겠습니까?", "탈퇴", JOptionPane.WARNING_MESSAGE);
 					if(result == 0){
-						int i = cm.delete();
+						int i = cm.delete(h.getId());
 						if(i == 1){
 							JOptionPane.showMessageDialog(null, "삭제 완료하였습니다!", "삭제 완료", JOptionPane.INFORMATION_MESSAGE);
 							new ClientGUI();

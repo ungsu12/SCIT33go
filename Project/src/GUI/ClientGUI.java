@@ -58,6 +58,7 @@ public class ClientGUI extends JFrame {
 	private ClientManager cm = new ClientManager();
 	private JLabel lblNewLabel_2;
 	private AudioStream as = null;
+	private Human h;
 	public ClientGUI() {
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -142,7 +143,7 @@ public class ClientGUI extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == button){
-		               JoinGUI jg = new JoinGUI(1);
+		               JoinGUI jg = new JoinGUI(1, null);
 		               jg.setVisible(true);
 		       		AudioPlayer.player.stop(as);
 		               setVisible(false);
@@ -179,12 +180,11 @@ public class ClientGUI extends JFrame {
 		return lblNewLabel_2;
 	}
 	private void enter(){
-		Human h = null;
 		String id = textField.getText();
 		String passWord = passwordField.getText();
 		h = new Human(id, passWord, null, null, null);
-		if(cm.login(h) != 0){
-		new MainGUI();
+		if(cm.login(h) != null){
+		new MainGUI(h);
 		setVisible(false);
 		AudioPlayer.player.stop(as);
 		}

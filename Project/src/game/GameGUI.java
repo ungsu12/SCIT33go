@@ -22,6 +22,8 @@ import javax.swing.JTextField;
 import Client.ClientManager;
 import GUI.MainGUI;
 import VO.Game;
+import VO.Human;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -52,12 +54,14 @@ public class GameGUI extends JFrame implements ActionListener, Runnable{
 	private ClientManager cm = new ClientManager();
 	private int select;
 	private JLabel label;
-	public GameGUI(int z) throws IOException{
+	private Human h;
+	public GameGUI(int z, Human h) throws IOException{
+		this.h = h;
 		select = z;
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				MainGUI mg = new MainGUI();
+				MainGUI mg = new MainGUI(h);
 				mg.setVisible(true);
 				setVisible(false);
 				t.stop();
@@ -156,9 +160,9 @@ public class GameGUI extends JFrame implements ActionListener, Runnable{
 			} catch (InterruptedException e) {
 				JOptionPane.showMessageDialog(null, "축하합니다. 게임을 끝내셨습니다.", "결과", JOptionPane.INFORMATION_MESSAGE);
 				double cheak = time/10.0;
-				Game g = new Game("", "", score, cheak, level);
+				Game g = new Game(h.getId(), "", score, cheak, level);
 				cm.game(g);
-				MainGUI main = new MainGUI();
+				MainGUI main = new MainGUI(h);
 				main.setVisible(true);
 				setVisible(false);
 				t.stop();
@@ -181,9 +185,9 @@ public class GameGUI extends JFrame implements ActionListener, Runnable{
 			if(life <= 0){
 				JOptionPane.showMessageDialog(this, "게임종료(게임시간:" + time/10.0 + "초  점수  : " + score + ")");
 				double cheak = time/10.0;
-				Game g = new Game("", "", score, cheak, level);
+				Game g = new Game(h.getId(), "", score, cheak, level);
 				cm.game(g);
-				MainGUI main = new MainGUI();
+				MainGUI main = new MainGUI(h);
 				main.setVisible(true);
 				setVisible(false);
 				t.stop();

@@ -12,14 +12,14 @@ import VO.Dictionary;
 import VO.Game;
 import VO.Grade;
 
-public class serverThread implements Runnable, Serializable{
+public class ServerThread implements Runnable, Serializable{
 	private static final long serialVersionUID = 1L;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private Object[] request;
 	private Object response;
 	private String cmd;
-	public serverThread(ObjectOutputStream oos, ObjectInputStream ois) {
+	public ServerThread(ObjectOutputStream oos, ObjectInputStream ois) {
 		this.oos = oos;
 		this.ois = ois;
 	}
@@ -60,7 +60,7 @@ public class serverThread implements Runnable, Serializable{
 					response = sm.update((Human)request[1]);
 					break;
 				case "delete":
-					response = sm.delete();
+					response = sm.delete((String)request[1]);
 					break;
 				case "record":
 					response = sm.record();

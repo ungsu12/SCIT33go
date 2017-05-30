@@ -9,13 +9,13 @@ import VO.Game;
 import VO.Grade;
 
 public interface Clientimpl {
-	public int login(Human h);
+	public Human login(Human h);
 	public int insert(Human h);
 	public int update(Human h);
 	public int result(Grade g);
 	public ArrayList<Grade> record();
 	public ArrayList<Game> gameRecord();
-	public int delete();
+	public int delete(String id);
 	public byte[] img(int x);
 	public byte[] sound(int x);
 	public ArrayList<Dictionary> test(int x);

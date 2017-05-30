@@ -89,7 +89,7 @@ public class Server {
 				e.printStackTrace();
 			}
 				
-			Thread tr = new Thread(new serverThread(oos, ois));
+			Thread tr = new Thread(new ServerThread(oos, ois));
 			tr.start();
 		}
 	}

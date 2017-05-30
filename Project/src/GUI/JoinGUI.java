@@ -32,6 +32,8 @@ import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class JoinGUI extends JFrame  {
 
@@ -53,14 +55,17 @@ public class JoinGUI extends JFrame  {
 	public ButtonGroup gender = null;
 	private ClientManager cm = new ClientManager();
 	ImageIcon image = new ImageIcon("Img\\kodomo12.jpg");
+    ImageIcon image7 = new ImageIcon("Img\\updateButton1.png");
 	private int select;
+	private Human h;
 	/**
 	 * Launch the application.
 	 */
 	private JFrame everyGUI;
 	
 	//회원가입 창
-	public JoinGUI(int x) {
+	public JoinGUI(int x, Human h) {
+	this.h = h;	
 		select = x;
 		setIconImage(Toolkit.getDefaultToolkit().getImage("Img\\mark.PNG"));
 		
@@ -143,6 +148,7 @@ public class JoinGUI extends JFrame  {
 		lblNewLabel_5.setIcon(image);
 		contentPane.add(lblNewLabel_5);
 		setVisible(true);
+		
 	}
 
 	//아이디 라벨
@@ -221,6 +227,9 @@ public class JoinGUI extends JFrame  {
 			nametf = new JTextField();
 			nametf.setBounds(56, 167, 226, 24);
 			nametf.setColumns(20);
+			if(select == 2){
+				nametf.setEnabled(false);
+			}
 		}
 		return nametf;
 	}
@@ -231,6 +240,9 @@ public class JoinGUI extends JFrame  {
 			agetf = new JTextField();
 			agetf.setBounds(56, 233, 226, 24);
 			agetf.setColumns(20);
+			if(select == 2){
+				agetf.setEnabled(false);
+			}
 		}
 		return agetf;
 	}
@@ -305,14 +317,13 @@ public class JoinGUI extends JFrame  {
 								return;
 							}
 							else {
-								System.out.println(getAgetf().getText().length());
-								Human h = null;
+								Human h1 = null;
 								String id = getIdtf().getText();
 								String passWord = getPf().getText();
 								String name =  getNametf().getText();
 								String age = getAgetf().getText();
-								h = new Human(id, passWord, name, age, sex);
-								int i = cm.insert(h);
+								h1 = new Human(id, passWord, name, age, sex);
+								int i = cm.insert(h1);
 								if(i == 0){
 									JOptionPane.showMessageDialog(null, "중복된 아이디가 있습니다.", "가입결과", JOptionPane.ERROR_MESSAGE);
 									return;
@@ -324,45 +335,72 @@ public class JoinGUI extends JFrame  {
 						}
 						//회원정보 수정으로 들어와서 정보를 수정함.
 						if(select == 2){
-							if(getPf().getText().equals("")
+							if(h.getId().equals(idtf.getText()) && h.getPassWord().equals(pf.getText())){
+								idtf.setEnabled(false);
+								pf.setEnabled(true);
+								nametf.setEnabled(true);
+								agetf.setEnabled(true);
+								getBtnNewButton().setIcon(image7);
+								select = 3;
+								JOptionPane.showMessageDialog(null, "확인되었습니다.", "아이디 확인 결과", JOptionPane.INFORMATION_MESSAGE);
+								return;
+							}	
+							else{
+								JOptionPane.showMessageDialog(null, "잘못된 값이 있습니다.", "아이디 확인 결과", JOptionPane.ERROR_MESSAGE);
+								return;
+							}
+						}
+						
+						if(select == 3){
+							if (getPf().getText().equals("")
 									|| getNametf().getText().equals("") || getAgetf().getText().equals("")){
 								JOptionPane.showMessageDialog(null, "빈칸을 모두 입력하십시오.", "수정결과", JOptionPane.ERROR_MESSAGE);
-							}else if(getPf().getText().length() < 4 || getPf().getText().length() > 21){
-								JOptionPane.showMessageDialog(null, "비밀번호는  4~20자리입니다.", "가입결과", JOptionPane.ERROR_MESSAGE);
+								return;
+							} 
+							else if(getPf().getText().length() < 4 || getPf().getText().length() > 21){
+								JOptionPane.showMessageDialog(null, "비밀번호는  4~20자리입니다.", "수정결과", JOptionPane.ERROR_MESSAGE);
 								return;
 							}
 							else if(Pattern.matches("^[0-9]+$", getNametf().getText())){
-								JOptionPane.showMessageDialog(null, "이름은 문자를 넣어주십시오.", "가입결과", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, "이름은 문자를 넣어주십시오.", "수정결과", JOptionPane.ERROR_MESSAGE);
 								return;
 							}
-							else if(getAgetf().getText().length() > 4 ){
-								JOptionPane.showMessageDialog(null, "나이는 3자리입니다.", "가입결과", JOptionPane.ERROR_MESSAGE);
+							else if(getAgetf().getText().length() > 3 ){
+								JOptionPane.showMessageDialog(null, "나이는 3자리입니다.", "수정결과", JOptionPane.ERROR_MESSAGE);
 								return;
 							}
 							else if(!(Pattern.matches("^[0-9]+$", getAgetf().getText()))){
-								JOptionPane.showMessageDialog(null, "나이는 숫자를 넣어주십시오.", "가입결과", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, "나이는 숫자를 넣어주십시오.", "수정결과", JOptionPane.ERROR_MESSAGE);
 								return;
 							}
-							else{
-								Human h = null;
+							else {
+								Human h2 = null;
 								String passWord = getPf().getText();
 								String name =  getNametf().getText();
 								String age = getAgetf().getText();
-								h = new Human("", passWord, name, age, "");
-								cm.update(h);
-								MainGUI mg = new MainGUI();
+								h2 = new Human(h.getId(), passWord, name, age, "");
+								int i = cm.update(h2);
+								if(i == 0){
+									JOptionPane.showMessageDialog(null, "잘못된 값이 있습니다.", "수정결과", JOptionPane.ERROR_MESSAGE);
+									select = 2;
+									btnNewButton.setIcon(image);
+									getIdtf();
+									getPf();
+									return;
+								}
+								JOptionPane.showMessageDialog(null, "수정 완료하였습니다", "수정결과", JOptionPane.INFORMATION_MESSAGE);
+								MainGUI mg =  new MainGUI(h2);
 								mg.setVisible(true);
 								setVisible(false);
 							}
-						}
+						} 
 					}
-					
 				}
 			});
 		}
 		return btnNewButton;
 	}
-    
+	
 	//취소를 눌러 clientGUI나 mainGUI로 복귀함.
 	private JButton getBtnNewButton_1() {
 		if (btnNewButton_1 == null) {
@@ -379,7 +417,7 @@ public class JoinGUI extends JFrame  {
 							setVisible(false);
 						}
 						else{
-							MainGUI mg = new MainGUI();
+							MainGUI mg = new MainGUI(h);
 							mg.setVisible(true);
 							setVisible(false);
 						}

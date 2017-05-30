@@ -21,14 +21,10 @@ public class ServerManager implements Serializable{
 	private PreparedStatement pstmt1 = null;
 	private PreparedStatement pstmt2 = null;
 	private PreparedStatement pstmt3 = null;
-	private PreparedStatement pstmt4 = null;
 	
-	public int login(Human h){
+	public Human login(Human h){
 		conn = ConnectionManager.getConnection();
 		String query1 = "Select id, password from HUMAN";
-		String query2 = "Drop table HUMANCHANGE";
-		String query3 = "Create table HUMANCHANGE(id varchar2(20), password varchar2(20))";
-		String query4 = "Insert into HUMANCHANGE values(?, ?)";
 		String id = "";
 		String password = "";
 		try {
@@ -40,27 +36,16 @@ public class ServerManager implements Serializable{
 					id = rs.getString(1);
 					password = rs.getString(2);
 					if(rs != null)rs.close();
-					if(pstmt4 != null)pstmt4.close();
+					if(pstmt1 != null)pstmt1.close();
 					break;
 				}
 			}
-			if(id.equals("") || password.equals(""))return 0;
-			pstmt2 = conn.prepareStatement(query2);
-			pstmt2.executeQuery();
-			if(pstmt2 != null)pstmt2.close();
-			pstmt3 = conn.prepareStatement(query3);
-			pstmt3.executeQuery();
-			if(pstmt3 != null)pstmt3.close();
-			pstmt4 = conn.prepareStatement(query4);
-			pstmt4.setString(1, id);
-			pstmt4.setString(2, password);
-			int i = pstmt4.executeUpdate();
-			if(pstmt4 != null)pstmt4.close();
-			if(conn != null)conn.close();
-			return i;
+			if(id.equals("") || password.equals(""))return null;
+			Human h1 = new Human(id, password, "", "", "");
+			return h1;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return 0;
+			return null;
 		}
 	}
 	
@@ -87,30 +72,14 @@ public class ServerManager implements Serializable{
 	
 	//회원정보를 수정
 	public int update(Human h){
-		String query1 = "Select id, PassWord from HUMANCHANGE";
 		String query2 = "Update HUMAN set password = ?, name = ?, age = ? where id = ?";
 		conn = ConnectionManager.getConnection();
-		String id = null;
-		String password = null;
-		try {
-			pstmt1 = conn.prepareStatement(query1);
-			ResultSet rs = pstmt1.executeQuery(query1);
-			while(rs.next()){
-				id = rs.getString(1);
-				password = rs.getString(2);
-			}
-			if(rs != null) rs.close();
-			if(pstmt1 != null) pstmt1.close();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-		
 		try {
 			pstmt2 = conn.prepareStatement(query2);
 			pstmt2.setString(1, h.getPassWord());
 			pstmt2.setString(2, h.getName());
 			pstmt2.setString(3, h.getAge());
-			pstmt2.setString(4, id);
+			pstmt2.setString(4, h.getId());
 			int i = pstmt2.executeUpdate();
 			if(pstmt2 != null)pstmt2.close();
 			if(conn != null)conn.close();
@@ -159,29 +128,20 @@ public class ServerManager implements Serializable{
 	
 	//평가 기록 저장
 	public int result(Grade g){
-		String id = null;
-		String query1 = "select id from HUMANCHANGE";
 		String query2 = "Insert into grade Values (?, sysdate, ?, ?)";
 		conn = ConnectionManager.getConnection();
-		try {
-			pstmt1 = conn.prepareStatement(query1);
-			ResultSet rs = pstmt1.executeQuery();
-			while(rs.next()){
-				id = rs.getString(1);
+			try {
+				pstmt2 = conn.prepareStatement(query2);
+				pstmt2.setString(1, g.getId());
+				pstmt2.setInt(2, g.getScore());
+				pstmt2.setString(3, g.getLevel());
+				int i = pstmt2.executeUpdate();
+				if(pstmt2 != null)pstmt2.close();
+				if(conn != null)conn.close();
+				return i;
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-			if(rs != null)rs.close();
-			if(pstmt1 != null)pstmt1.close();
-			pstmt2 = conn.prepareStatement(query2);
-			pstmt2.setString(1, id);
-			pstmt2.setInt(2, g.getScore());
-			pstmt2.setString(3, g.getLevel());
-			int i = pstmt2.executeUpdate();
-			if(pstmt2 != null)pstmt2.close();
-			if(conn != null)conn.close();
-			return i;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		return 0;
 	}
 	
@@ -241,20 +201,11 @@ public class ServerManager implements Serializable{
 	}
 	
 	//탈퇴 
-	public int delete(){
-		String query1 = "select ID from HUMANCHANGE";		
-		String query2 = "delete from HUMAN where ID = ?";
+	public int delete(String id){
+		String query1 = "delete from HUMAN where ID = ?";
 		conn = ConnectionManager.getConnection();
-		String id = null;
 		try {
-			pstmt1 = conn.prepareStatement(query1);
-			ResultSet rs = pstmt1.executeQuery();
-			while(rs.next()){
-				id = rs.getString(1);
-			}
-			if(rs != null) rs.close();
-			if(pstmt1 != null)pstmt1.close();
-			pstmt2 = conn.prepareStatement(query2);
+			pstmt2 = conn.prepareStatement(query1);
 			pstmt2.setString(1, id);
 			int i = pstmt2.executeUpdate();
 			if (pstmt2 != null)pstmt2.close();
@@ -313,20 +264,11 @@ public class ServerManager implements Serializable{
 		}
 	
 	public int game(Game g){
-		String id = null;
-		String query1 = "select id from HUMANCHANGE";
 		String query2 = "Insert into RESULT values(?, sysdate, ?, ?, ?)";
 		conn = ConnectionManager.getConnection();
 		try {
-			pstmt1 = conn.prepareStatement(query1);
-			ResultSet rs = pstmt1.executeQuery();
-			while(rs.next()){
-				id = rs.getString(1);
-			}
-			if(rs != null)rs.close();
-			if(pstmt1 != null)pstmt1.close();
 			pstmt2 = conn.prepareStatement(query2);
-			pstmt2.setString(1, id);
+			pstmt2.setString(1, g.getId());
 			pstmt2.setInt(2, g.getScore());
 			pstmt2.setDouble(3, g.getTime());
 			pstmt2.setString(4, g.getLevel());

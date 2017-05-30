@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import com.sun.media.sound.WaveFileWriter;
 
 import Client.ClientManager;
+import VO.Human;
 import sun.audio.AudioData;
 import sun.audio.AudioDataStream;
 import sun.audio.AudioPlayer;
@@ -61,7 +62,7 @@ public class ScreenGUI extends JFrame implements Serializable{
     private int progressNext1 = 0;
     private int progressNext2 = 0;
     private int progressNext3 = 0;
-	
+	private Human h;
 	/**
 	 * Launch the application.
 	 */
@@ -76,7 +77,8 @@ public class ScreenGUI extends JFrame implements Serializable{
 	 * Create the frame.
 	 */
     //screenGUI 시작
-	public ScreenGUI(int x) {
+	public ScreenGUI(int x, Human h) {
+		this.h = h;
 		setIconImage(Toolkit.getDefaultToolkit().getImage("Img\\mark.PNG"));
 		setResizable(false);
 			select = x;
@@ -111,7 +113,7 @@ public class ScreenGUI extends JFrame implements Serializable{
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				MainGUI mg = new MainGUI();
+				MainGUI mg = new MainGUI(h);
 				mg.setVisible(true);
 				setVisible(false);
 
@@ -178,7 +180,7 @@ public class ScreenGUI extends JFrame implements Serializable{
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (e.getSource() == btnNewButton) {
-						MainGUI mg = new MainGUI();
+						MainGUI mg = new MainGUI(h);
 						mg.setVisible(true);
 						setVisible(false);
 					}

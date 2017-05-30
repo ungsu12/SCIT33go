@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import Client.ClientManager;
 import VO.Game;
 import VO.Grade;
+import VO.Human;
 
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
@@ -46,6 +47,7 @@ public class RecordGUI extends JFrame {
 	private DefaultListModel<Game> ggDlm;
 	private JList<Grade> gradeList;
 	private JList<Game> gameList;
+	private Human h;
 	ImageIcon image1 = new ImageIcon("Img\\kodomo24.jpg");
 	/**
 	 * Launch the application.
@@ -67,7 +69,8 @@ public class RecordGUI extends JFrame {
 	 */
 	
 	//redcordGUI 시작 
-	public RecordGUI() {
+	public RecordGUI(Human h) {
+		this.h = h;
 		setIconImage(Toolkit.getDefaultToolkit().getImage("Img\\mark.PNG"));
 		setResizable(false);
 		   //X창을 눌렀을시 메인GUI로 복귀.
@@ -96,7 +99,7 @@ public class RecordGUI extends JFrame {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				MainGUI mg = new MainGUI();
+				MainGUI mg = new MainGUI(h);
 				mg.setVisible(true);
 				setVisible(false);
 
@@ -142,7 +145,7 @@ public class RecordGUI extends JFrame {
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				  if(e.getSource() == btnNewButton){
-					  MainGUI mg = new MainGUI();
+					  MainGUI mg = new MainGUI(h);
 					  mg.setVisible(true);
 					  setVisible(false);
 				  }

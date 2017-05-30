@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import VO.Human;
 import game.GameGUI;
 
 import javax.swing.GroupLayout;
@@ -37,6 +38,7 @@ public class EducationSelectGUI extends JFrame {
 	public JLabel lblNewLabel_1;
 	public JLabel label;
 	public JLabel label_1;
+	private Human h;
 	/**
 	 * Launch the application.
 	 */
@@ -51,7 +53,8 @@ public class EducationSelectGUI extends JFrame {
 	 * Create the frame.
 	 */
 	//난이도 설정창
-	public EducationSelectGUI(JFrame maingui) {
+	public EducationSelectGUI(JFrame maingui, Human h) {
+		this.h = h;
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("Img\\mark.PNG"));
 		this.evevryGUI = maingui;
@@ -84,7 +87,7 @@ public class EducationSelectGUI extends JFrame {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				MainGUI mg = new MainGUI();
+				MainGUI mg = new MainGUI(h);
 				mg.setVisible(true);
 				setVisible(false);
 
@@ -131,7 +134,7 @@ public class EducationSelectGUI extends JFrame {
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == button_2){
-					MainGUI mg = new MainGUI();
+					MainGUI mg = new MainGUI(h);
 					mg.setVisible(true);
 					setVisible(false);
 				}
@@ -162,7 +165,7 @@ public class EducationSelectGUI extends JFrame {
 						if (getTitle().equals("게임 선택")) {
 							GameGUI gg;
 							try {
-								gg = new GameGUI(1);
+								gg = new GameGUI(1, h);
 								gg.setTitle("초보자");
 								gg.setVisible(true);
 								setVisible(false);
@@ -171,13 +174,13 @@ public class EducationSelectGUI extends JFrame {
 								e1.printStackTrace();
 							}
 						} else if (getTitle().equals("평가 선택")) {
-							ScreenPYGUI spy = new ScreenPYGUI(1);
+							ScreenPYGUI spy = new ScreenPYGUI(1, h);
 							spy.setTitle("평가 초급");
 							spy.setVisible(true);
 							setVisible(false);
 						}
 						else {
-							ScreenGUI sg = new ScreenGUI(1);
+							ScreenGUI sg = new ScreenGUI(1, h);
 							sg.setTitle("학습 초급");
 							sg.setVisible(true);
 							setVisible(false);
@@ -203,7 +206,7 @@ public class EducationSelectGUI extends JFrame {
 						if (getTitle().equals("게임 선택")) {
 							GameGUI gg;
 							try {
-								gg = new GameGUI(2);
+								gg = new GameGUI(2, h);
 								gg.setTitle("중급자");
 								gg.setVisible(true);
 								setVisible(false);
@@ -211,14 +214,14 @@ public class EducationSelectGUI extends JFrame {
 								e1.printStackTrace();
 							}
 						} else if (getTitle().equals("평가 선택")) {
-							ScreenPYGUI spy = new ScreenPYGUI(2);
+							ScreenPYGUI spy = new ScreenPYGUI(2, h);
 							spy.setTitle("평가 중급");
 							spy.setVisible(true);
 							setVisible(false);
 						}
 
 						else {
-							ScreenGUI sg = new ScreenGUI(2);
+							ScreenGUI sg = new ScreenGUI(2,h);
 							sg.setTitle("학습 중급");
 							sg.setVisible(true);
 							setVisible(false);
@@ -244,7 +247,7 @@ public class EducationSelectGUI extends JFrame {
 						if (getTitle().equals("게임 선택")) {
 							GameGUI gg;
 							try {
-								gg = new GameGUI(3);
+								gg = new GameGUI(3, h);
 								gg.setTitle("상급자");
 								gg.setVisible(true);
 								setVisible(false);
@@ -253,14 +256,14 @@ public class EducationSelectGUI extends JFrame {
 								e1.printStackTrace();
 							}
 						} else if (getTitle().equals("평가 선택")) {
-							ScreenPYGUI spy = new ScreenPYGUI(3);
+							ScreenPYGUI spy = new ScreenPYGUI(3, h);
 							spy.setTitle("평가 고급");
 							spy.setVisible(true);
 							setVisible(false);
 						}
 
 						else {
-							ScreenGUI sg = new ScreenGUI(3);
+							ScreenGUI sg = new ScreenGUI(3,h);
 							sg.setTitle("학습 고급");
 							sg.setVisible(true);
 							setVisible(false);

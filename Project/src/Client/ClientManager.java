@@ -54,9 +54,9 @@ public class ClientManager implements Clientimpl, Serializable{
 	}
 
 	@Override
-	public int login(Human h) {
+	public Human login(Human h) {
 		Object[] request = {"login", h};
-		return (int)this.send(request);
+		return (Human)this.send(request);
 	}
 
 	@Override
@@ -84,8 +84,8 @@ public class ClientManager implements Clientimpl, Serializable{
 	}
 
 	@Override
-	public int delete() {
-		Object[] request = {"delete"};
+	public int delete(String id) {
+		Object[] request = {"delete", id};
 		return (int)this.send(request);
 	}
 

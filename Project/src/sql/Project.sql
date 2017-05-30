@@ -19,7 +19,6 @@ Score number(10) CONSTRAINT RESULT_SCORE_NN NOT null,
 resultTime number(7) CONSTRAINT RESULT_RESULTTIME_NN NOT NULL,
 LEVELTEST varchar2(20) CONSTRAINT grade_LEVELTEST_NN NOT NULL );
 
-Create table HumanChange(id varchar2(20), password varchar2(20));
 
 Create Table Human (id varchar2(20) CONSTRAINT Human_id_PK primary key,
 password varchar2(20) CONSTRAINT Human_password_NN not null, 
